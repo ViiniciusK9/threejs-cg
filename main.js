@@ -117,10 +117,7 @@ const onKeyDown = function (event) {
 		case 'KeyJ':
 			createBullet();
 			break;
-
-
 	}
-
 };
 
 const onKeyUp = function (event) {
@@ -146,9 +143,7 @@ const onKeyUp = function (event) {
 		case 'KeyD':
 			moveRight = false;
 			break;
-
 	}
-
 };
 
 document.addEventListener('keydown', onKeyDown);
@@ -159,9 +154,9 @@ raycaster = new THREE.Raycaster(new THREE.Vector3(), new THREE.Vector3(0, - 1, 0
 
 /* Helpers */
 const axesHelper = new THREE.AxesHelper(10);
-scene.add(axesHelper);
+//scene.add(axesHelper);
 const gridHelper = new THREE.GridHelper(30);
-scene.add(gridHelper);
+//scene.add(gridHelper);
 
 // Carregar texturas
 let textureLoader = new THREE.TextureLoader();
@@ -203,7 +198,7 @@ plane3.position.set(30, 0, 0);
 scene.add(plane3);
 
 
-// Supondo que 'bricks.jpg' está localizado no mesmo diretório do seu código
+
 textureLoader = new THREE.TextureLoader();
 const bricksTexture = textureLoader.load(briks);
 bricksTexture.wrapS = THREE.RepeatWrapping; // Repetição na direção S (horizontal)
@@ -214,7 +209,6 @@ bricksTexture.repeat.set(10, 2); // Número de repetições na horizontal e vert
 // Criar um material usando MeshStandardMaterial
 const newMaterial = new THREE.MeshStandardMaterial({
 	map: bricksTexture,
-	// Definir uma cor para modificar a saturação
 	color: new THREE.Color(1, 1, 1) // Cor branca (sem alteração)
 });
 
@@ -222,7 +216,6 @@ bricksTexture.repeat.set(1, 2); // Número de repetições na horizontal e verti
 // Criar um material usando MeshStandardMaterial
 const newMaterial2 = new THREE.MeshStandardMaterial({
 	map: bricksTexture,
-	// Definir uma cor para modificar a saturação
 	color: new THREE.Color(1, 1, 1) // Cor branca (sem alteração)
 });
 
@@ -307,8 +300,7 @@ function spawnRandomSpheresWithinBox(numberOfTargets) {
 				if (child.isMesh) {
 					child.castShadow = true; // Permitir que o objeto faça o lançamento de sombras
 					child.receiveShadow = true; // Permitir que o objeto receba sombras
-					// Defina outras propriedades do material aqui, se necessário
-					child.material.side = THREE.DoubleSide; // Exemplo: definir o material para renderizar em ambos os lados
+					child.material.side = THREE.DoubleSide; 
 				}
 			});
 
@@ -320,8 +312,8 @@ function spawnRandomSpheresWithinBox(numberOfTargets) {
 	}
 }
 
-// Chame a função para criar um número específico de esferas dentro da caixa
-spawnRandomSpheresWithinBox(15); // Altere o número para a quantidade desejada de esferas
+// Chame a função para criar um número específico de targets dentro da caixa
+spawnRandomSpheresWithinBox(15); 
 
 const gunsLoader = new GLTFLoader();
 let gunsX = [-5.8, -4.5, -2.5, -2, -1, 1.7, 2.7, 5.5, 6.5];
@@ -334,8 +326,7 @@ for (let i = 0; i < gunsUrl.length; i++) {
 			if (child.isMesh) {
 				child.castShadow = true; // Permitir que o objeto faça o lançamento de sombras
 				child.receiveShadow = true; // Permitir que o objeto receba sombras
-				// Defina outras propriedades do material aqui, se necessário
-				child.material.side = THREE.DoubleSide; // Exemplo: definir o material para renderizar em ambos os lados
+				child.material.side = THREE.DoubleSide;
 			}
 		});
 		gun.position.set(gunsX[i], 1.4, 0);
@@ -357,19 +348,16 @@ for (let i = 0; i < 12; i++) {
 			if (child.isMesh) {
 				child.castShadow = true; // Permitir que o objeto faça o lançamento de sombras
 				child.receiveShadow = true; // Permitir que o objeto receba sombras
-				// Defina outras propriedades do material aqui, se necessário
-				child.material.side = THREE.DoubleSide; // Exemplo: definir o material para renderizar em ambos os lados
+				child.material.side = THREE.DoubleSide;
 			}
 		});
 		environment.position.set(environmentX[i], 0, 15.2);
 		environment.rotation.set(0, Math.PI * 1, 0)
 		scene.add(environment);
-		//environment.push(environment); // Adicione o alvo aos objetos da cena
 	});
 }
 
 // parede de tras do clube
-let structuresUrl = ['']
 let environmentX1 = [0, -10, -2, 6, 12];
 let environmentZ1 = [0, -13, -15.2, -13, -10];
 let environmentR1 = [0, Math.PI * 0.3, 0, 0, 0]
@@ -382,19 +370,16 @@ for (let i = 1; i <= 4; i++) {
 			if (child.isMesh) {
 				child.castShadow = true; // Permitir que o objeto faça o lançamento de sombras
 				child.receiveShadow = true; // Permitir que o objeto receba sombras
-				// Defina outras propriedades do material aqui, se necessário
-				child.material.side = THREE.DoubleSide; // Exemplo: definir o material para renderizar em ambos os lados
+				child.material.side = THREE.DoubleSide;
 			}
 		});
 		environment.position.set(environmentX1[i], 0, environmentZ1[i]);
 		environment.rotation.set(0, environmentR1[i], 0)
 		scene.add(environment);
-		//environment.push(environment); // Adicione o alvo aos objetos da cena
 	});
 }
 
 // Portao
-
 for (let i = 0; i < 1; i++) {
 	environmentLoader.load('./assets/environment/portao.glb', (gltf) => {
 		const environment = gltf.scene;
@@ -403,9 +388,6 @@ for (let i = 0; i < 1; i++) {
 		environment.traverse(child => {
 			if (child.isMesh) {
 				child.castShadow = true; // Permitir que o objeto faça o lançamento de sombras
-				//child.receiveShadow = true; // Permitir que o objeto receba sombras
-				// Defina outras propriedades do material aqui, se necessário
-				//child.material.side = THREE.DoubleSide; // Exemplo: definir o material para renderizar em ambos os lados
 			}
 		});
 		let environmentScale = 0.07;
@@ -413,7 +395,6 @@ for (let i = 0; i < 1; i++) {
 		environment.position.set(-14.2, 0, 10);
 		environment.rotation.set(0, Math.PI * 0.5, 0)
 		scene.add(environment);
-		//environment.push(environment); // Adicione o alvo aos objetos da cena
 	});
 }
 
@@ -426,8 +407,6 @@ for (let i = 0; i < 1; i++) {
 		environment.traverse(child => {
 			if (child.isMesh) {
 				child.castShadow = true; // Permitir que o objeto faça o lançamento de sombras
-				//child.receiveShadow = true; // Permitir que o objeto receba sombras
-				// Defina outras propriedades do material aqui, se necessário
 				child.material.side = THREE.DoubleSide; // Exemplo: definir o material para renderizar em ambos os lados
 			}
 		});
@@ -436,7 +415,6 @@ for (let i = 0; i < 1; i++) {
 		environment.position.set(19.2, 0, 10);
 		environment.rotation.set(0, Math.PI * 1.5, 0)
 		scene.add(environment);
-		//environment.push(environment); // Adicione o alvo aos objetos da cena
 	});
 }
 
@@ -450,8 +428,7 @@ for (let i = 0; i < 1; i++) {
 			if (child.isMesh) {
 				child.castShadow = true; // Permitir que o objeto faça o lançamento de sombras
 				//child.receiveShadow = true; // Permitir que o objeto receba sombras
-				// Defina outras propriedades do material aqui, se necessário
-				child.material.side = THREE.DoubleSide; // Exemplo: definir o material para renderizar em ambos os lados
+				child.material.side = THREE.DoubleSide;
 			}
 		});
 		let environmentScale = 2;
@@ -459,11 +436,10 @@ for (let i = 0; i < 1; i++) {
 		environment.position.set(19.2, 0, -1);
 		environment.rotation.set(0, Math.PI * 1.2, 0)
 		scene.add(environment);
-		//environment.push(environment); // Adicione o alvo aos objetos da cena
 	});
 }
 
-// Crie uma textura com base em um canvas contendo o texto
+// Texto HITS
 function createTextTexture(text, color) {
 	const canvas = document.createElement('canvas');
 	const context = canvas.getContext('2d');
@@ -494,10 +470,7 @@ const textMaterial = new THREE.SpriteMaterial({
 // Crie um sprite usando o material
 const textSprite = new THREE.Sprite(textMaterial);
 textSprite.scale.set(10, 5, 1); // Ajuste conforme necessário
-
-// Posicione o sprite na cena
 textSprite.position.set(0, 10, 40); // Ajuste a posição conforme necessário
-
 scene.add(textSprite);
 
 // Função para atualizar o texto
@@ -506,38 +479,28 @@ function updateText(text) {
 	textMaterial.needsUpdate = true;
 }
 
-
 // Carregue a textura da mira
 textureLoader = new THREE.TextureLoader();
 const crosshairTexture = textureLoader.load('/crosshair.png');
 
 // Defina as dimensões da mira
-const crosshairSize = 0.01; // Ajuste conforme necessário
+const crosshairSize = 0.01; 
 
 // Crie um material utilizando a textura da mira
 const crosshairMaterial = new THREE.SpriteMaterial({ map: crosshairTexture });
-
-// Crie um sprite utilizando o material criado
 const crosshairSprite = new THREE.Sprite(crosshairMaterial);
-
-// Defina a escala da mira para o tamanho desejado
 crosshairSprite.scale.set(crosshairSize, crosshairSize, 1);
-
-// Posicione a mira no centro da tela
-crosshairSprite.position.set(0, 0, 0); // Ajuste a profundidade (-10 é um exemplo)
-
-// Adicione a mira à cena
+crosshairSprite.position.set(0, 0, 0);
 scene.add(crosshairSprite);
 
+/* Criando sacos de areia */
 let bags = [];
 const sandLoader = new GLTFLoader();
-// Dentro da função spawnRandomSpheresWithinBox:
 function spawnWallSandBags() {
 	for (let i = 0; i < 9; i++) {
 		sandLoader.load('/assets/sand_bags.glb', (gltf) => {
 			const sand_bag = gltf.scene;
 
-			// Defina a escala desejada para o alvo (por exemplo, escala de 50% em todas as direções)
 			const scaleFactor = 0.02;
 			sand_bag.scale.set(scaleFactor, scaleFactor, scaleFactor);
 
@@ -546,18 +509,14 @@ function spawnWallSandBags() {
 				if (child.isMesh) {
 					child.castShadow = true; // Permitir que o objeto faça o lançamento de sombras
 					child.receiveShadow = true; // Permitir que o objeto receba sombras
-					// Defina outras propriedades do material aqui, se necessário
 					child.material.side = THREE.DoubleSide; // Exemplo: definir o material para renderizar em ambos os lados
 				}
 			});
 			sand_bag.rotation.y = Math.PI / 2; // Radianos equivalentes a 90 graus
 			scene.add(sand_bag);
-			bags.push(sand_bag); // Adicione o alvo aos objetos da cena
-
+			bags.push(sand_bag); 
 		});
 	}
-
-
 }
 
 spawnWallSandBags();
@@ -574,10 +533,9 @@ spotLight.angle = 0.4;
 spotLight.position.set(-100, 100, 60);
 
 const sLightHelper = new THREE.SpotLightHelper(spotLight);
-scene.add(sLightHelper);
+//scene.add(sLightHelper);
 
-/* Create tables */
-
+/* Create containers */
 const tableLoader = new GLTFLoader();
 let tables = [];
 for (let i = 0; i < 4; i++) {
@@ -592,7 +550,6 @@ for (let i = 0; i < 4; i++) {
 				if (child.isMesh) {
 					child.castShadow = true; // Permitir que o objeto faça o lançamento de sombras
 					child.receiveShadow = true; // Permitir que o objeto receba sombras
-					// Defina outras propriedades do material aqui, se necessário
 					child.material.side = THREE.DoubleSide; // Exemplo: definir o material para renderizar em ambos os lados
 				}
 			});
@@ -657,7 +614,6 @@ const rayCaster = new THREE.Raycaster();
 
 
 /* Load object with GLTFLoader */
-
 let mixer;
 let model;
 let clayClips;
@@ -681,7 +637,6 @@ assetLoader.load(
 			if (child.isMesh) {
 				child.castShadow = true; // Permitir que o objeto faça o lançamento de sombras
 				child.receiveShadow = true; // Permitir que o objeto receba sombras
-				// Defina outras propriedades do material aqui, se necessário
 				child.material.side = THREE.DoubleSide; // Exemplo: definir o material para renderizar em ambos os lados
 			}
 		});
@@ -708,7 +663,6 @@ assetLoader.load(
 );
 
 // Auxiliares para a função animate
-let step = 0;
 const clock = new THREE.Clock();
 let att = false, att2 = false;
 let posx = [10, 0, -10, 10, 0, -10, 10, 0, -10];
@@ -738,12 +692,9 @@ function animate(time) {
 		mixer.update(dt);
 	}
 
-	step += options.speed;
-
 	spotLight.angle = options.angle;
 	spotLight.penumbra = options.penumbra;
 	spotLight.intensity = options.intensity;
-	sLightHelper.update();
 
 	rayCaster.setFromCamera(mousePosition, camera);
 	const intersects = rayCaster.intersectObjects(scene.children);
