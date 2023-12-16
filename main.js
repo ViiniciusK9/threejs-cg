@@ -857,7 +857,7 @@ function updateBullets() {
 					updateText('Hits: ' + countHits);
 					model.visible = false;
 					clayAction.stop();
-					// Escolhendo o índice aleatório para o array `arr`:
+					// Escolhendo o índice aleatório para o array `clayClipsName`:
 					const randomIndex = Math.floor(Math.random() * clayClipsName.length);
 					console.log(clayClipsName[randomIndex]);
 					const clip = THREE.AnimationClip.findByName(clayClips, clayClipsName[randomIndex]);
